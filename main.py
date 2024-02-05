@@ -22,7 +22,7 @@ def vigenere(text: bytearray, key: bytearray) -> bytearray:
 
 def write_ctext_file(ptext: str, key: bytearray, fname: str) -> None:
     pbytes = bytearray(ptext, 'utf-8')
-    cbytes = vigenere(pbytes, key)
+    cbytes = singleByteXor(pbytes, key)
     with open(fname, 'wb') as f:
         f.write(cbytes)
 
@@ -74,16 +74,19 @@ def break_single_byte(cbytes: bytearray, eng_ranks: bytearray) -> (int, bytearra
             best_out = ptext
     return best_key, best_out
 
+
 def encrypt():
     text = """Cryptography 2/5:
-        - Finish implemnting breck_single_byte
+        - Finish implementing break_single_byte
         - Use your code to encrypt some text (must be long enough, a few sentances)
-        - Include the plainthext and cyphtext in your repo
-        - Send cyphtext to a classmate, have them try to break it
+        - Include the plaintext and ciphertext in your repo
+        - Send ciphertext to a classmate, have them try to break it
         - SEND THIS FILE TO 2 MORE PEOPLE"""
-    ctext = write_ctext_file(text,)
-def main():
+    write_ctext_file(text, 3,"scheme.bin")
 
+
+def main():
+    encrypt()
     cbytes = read_ctext_file([0b00000000], 'awesome_pt.bin')
     eng_ranks = gen_english_ranks()
     key, message = break_single_byte(cbytes, eng_ranks)
