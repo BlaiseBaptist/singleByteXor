@@ -23,7 +23,6 @@ def vigenere(text: bytearray, key: bytearray) -> bytearray:
 def write_ctext_file(ptext: str, key: bytearray, fname: str) -> None:
     pbytes = bytearray(ptext, 'utf-8')
     cbytes = vigenere(pbytes, key)
-
     with open(fname, 'wb') as f:
         f.write(cbytes)
 
@@ -63,17 +62,26 @@ def gen_english_ranks(infile='pg2701.txt') -> bytearray:
 
 
 def break_single_byte(cbytes: bytearray, eng_ranks: bytearray) -> (int, bytearray):
-    pass  # TODO: Implement this!
+    best_value = 10000000
+    best_key = int
+    best_out = bytearray
+    for x in range(255):
+        ptext = singleByteXor(cbytes, x)
+        score = english_score(ptext, eng_ranks)
+        if score < best_value:
+            best_key = x
+            best_value = score
+            best_out = ptext
+    return best_key, best_out
 
 
 def main():
-    cbytes = read_ctext_file([0b00000000], 'breakme.bin')
+
+    cbytes = read_ctext_file([0b00000000], 'awesome_pt.bin')
     eng_ranks = gen_english_ranks()
     key, message = break_single_byte(cbytes, eng_ranks)
-    print(message.decode('utf-8'))
+    print(message.decode('utf-8'), "\n\nkey:", key)
 
 
 if __name__ == '__main__':
     main()
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
