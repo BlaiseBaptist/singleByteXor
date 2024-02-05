@@ -76,22 +76,21 @@ def break_single_byte(cbytes: bytearray, eng_ranks: bytearray) -> (int, bytearra
 
 
 def encrypt():
-    text = """Cryptography 2/5:
+    old_text = """Cryptography 2/5:
         - Finish implementing break_single_byte
         - Use your code to encrypt some text (must be long enough, a few sentances)
         - Include the plaintext and ciphertext in your repo
         - Send ciphertext to a classmate, have them try to break it
         - SEND THIS FILE TO 2 MORE PEOPLE"""
-    write_ctext_file(text, 3,"scheme.bin")
+    text = "\n".join(open("pg2701.txt").readlines())
+    write_ctext_file(text, 10, "havefun.bin")
 
 
 def main():
-    encrypt()
-    cbytes = read_ctext_file([0b00000000], 'awesome_pt.bin')
+    cbytes = read_ctext_file([0b00000000], 'pg2701.txt')
     eng_ranks = gen_english_ranks()
     key, message = break_single_byte(cbytes, eng_ranks)
     print(message.decode('utf-8'), "\n\nkey:", key)
 
 
-if __name__ == '__main__':
-    main()
+encrypt()
