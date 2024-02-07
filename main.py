@@ -66,7 +66,6 @@ def break_single_byte(cbytes: bytearray, eng_ranks: bytearray) -> (int, bytearra
     best_key = int
     best_out = bytearray
     for x in range(255):
-
         ptext = singleByteXor(cbytes, x)
         score = english_score(ptext, eng_ranks)
         if score < best_value:
@@ -88,7 +87,7 @@ def encrypt():
 
 
 def main():
-    cbytes = read_ctext_file([0b00000000], 'havefun.bin')
+    cbytes = read_ctext_file([0b00000000], 'scheme.bin')
     eng_ranks = gen_english_ranks()
     key, message = break_single_byte(cbytes, eng_ranks)
     print(message.decode('utf-8'), "\n\nkey:", key)
