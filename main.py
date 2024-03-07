@@ -122,11 +122,12 @@ if do does you can say your better which is really funny\n""".encode('utf8')
 
 
 def main():
-    #cbytes: bytearray = encode()
-    #write_ctext_file(cbytes, "fun.exe")
-    #decode(cbytes)
-    #print(vigenere(cbytes,"fun".encode('utf8')).decode())
-    cbytes= read_ctext_file("the.bin")
+    # cbytes: bytearray = encode()
+    # write_ctext_file(cbytes, "fun.exe")
+    # decode(cbytes)
+    # print(vigenere(cbytes,"fun".encode('utf8')).decode())
+    cbytes = read_ctext_file("breakme2.bin")
+
     decode(cbytes)
 
 
